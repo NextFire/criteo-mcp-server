@@ -3,5 +3,12 @@ name = "criteo-mcp-server"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.9"
-dependencies = []
+requires-python = ">=3.10"
+dependencies = ["mcp", "criteo-api"]
+
+[dependency-groups]
+dev = ["mcp[cli]"]
+
+[tool.uv.sources]
+mcp = { git = "https://github.com/NextFire/python-sdk.git", branch = "feat/expose-skip-names_latest-tag" }
+criteo-api = { path = "criteo-api" }

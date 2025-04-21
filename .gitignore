@@ -8,3 +8,7 @@ wheels/
 
 # Virtual environments
 .venv
+
+/.vscode/mcp.json
+/.vscode/settings.json
+/criteo-api/
