@@ -1,14 +1,40 @@
 [project]
 name = "criteo-mcp-server"
-version = "0.1.0"
-description = "Add your description here"
+dynamic = ["version"]
+description = "Criteo MCP server"
 readme = "README.md"
+license = "LGPL-3.0-or-later"
+authors = [{ name = "NextFire", email = "git@yuru.moe" }]
 requires-python = ">=3.10"
 dependencies = ["mcp", "criteo-api"]
 
 [dependency-groups]
-dev = ["mcp[cli]"]
+dev = ["mcp[cli]", "pyright==1.1.399", "ruff==0.11.6"]
 
 [tool.uv.sources]
 mcp = { git = "https://github.com/NextFire/python-sdk.git", branch = "feat/expose-skip-names_latest-tag" }
 criteo-api = { path = "criteo-api" }
+
+[project.scripts]
+criteo-mcp-server = "criteo_mcp_server.__main__:main"
+
+[project.urls]
+homepage = "https://github.com/NextFire/criteo-mcp-server"
+
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.pyright]
+pythonVersion = "3.10"
+reportDeprecated = true
+ignore = ["criteo-api"]
+
+[tool.ruff]
+exclude = ["criteo-api"]
+
+[tool.ruff.lint]
+extend-select = ["I"]

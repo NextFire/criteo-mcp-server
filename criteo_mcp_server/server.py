@@ -3,7 +3,7 @@ import os
 import re
 import time
 from contextlib import asynccontextmanager
-from typing import Any, AsyncIterator, override
+from typing import Any, AsyncIterator
 
 import httpx
 from criteo_api import api, rest
@@ -52,7 +52,6 @@ class ClientCredentialsApiClient(ApiClient):
             token_data = response.json()
             return token_data
 
-    @override
     async def call_api(
         self,
         method,
@@ -118,6 +117,3 @@ async def app_lifespan(server: FastMCP) -> AsyncIterator[None]:
 
 
 mcp = FastMCP("Criteo API", lifespan=app_lifespan)
-
-if __name__ == "__main__":
-    mcp.run()
